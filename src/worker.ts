@@ -1,5 +1,5 @@
 import { UInt64, PublicKey, Mina, fetchAccount } from "o1js";
-import { zkCloudWorker, Cloud } from "zkcloudworker";
+import { zkCloudWorker, Cloud, initBlockchain } from "zkcloudworker";
 import { SocialcapDeposits } from "./contract";
 
 const MINA = 1e9;
@@ -60,6 +60,8 @@ export class DepositsWorker extends zkCloudWorker {
     let { memo, payer, amount, fee } = getPayload(transactions);
     console.log(`Receiving payment: ${amount} from: ${payer} for fee:${fee}`);
     
+    await initBlockchain('devnet');
+
     let payerPublicKey = PublicKey.fromBase58(payer);
     let payerExists = await fetchAccount({ publicKey: payerPublicKey });
     if (!payerExists) throw Error("Fee payer account does not exist");
