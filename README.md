@@ -107,7 +107,7 @@ Params to `api.execute()`:
     file. Keep it simple, no strange chars here ! 
 - `metadata`: Free metadata info, to be included in the call.
 - `args`: A stringified set of optional params that can be used by the worker. 
-  Is usually used to pass params tha do not change betwwen calls.
+  Is usually used to pass params that do not change between calls.
 - `transactions`: The array of stringified payloads that will be passed to the 
   worker and are needed for execution. It may be empty depending on the 
   worker needs.
