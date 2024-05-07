@@ -48,19 +48,22 @@ async function isCompiled(vk: any | null): Promise<any | null> {
 
 
 export class DepositsWorker extends zkCloudWorker {
-
+  
   constructor(cloud: Cloud) {
     super(cloud);
   }
 
   public async execute(transactions: string[]): Promise<string | undefined> {
+    console.log(`Task: ${this.cloud.task}`)
     console.log(`Args: ${this.cloud.args}`)
     console.log(`Payload: ${transactions[0]}`);
+
+    let { chainId } = JSON.parse(this.cloud.args || '{"chainId": "devnet"}');
+    await initBlockchain(chainId);
+    console.log(`Using chain: ${chainId}`);
     
     let { memo, payer, amount, fee } = getPayload(transactions);
     console.log(`Receiving payment: ${amount} from: ${payer} for fee:${fee}`);
-    
-    await initBlockchain('devnet');
 
     let payerPublicKey = PublicKey.fromBase58(payer);
     let payerExists = await fetchAccount({ publicKey: payerPublicKey });

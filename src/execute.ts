@@ -1,30 +1,39 @@
+import "dotenv/config";
 import { zkCloudWorkerClient } from "zkcloudworker";
 
-async function main() {
-  console.log(
-    `zkCloudWorker Socialcap deposits (c) MAZ 2024 www.zkcloudworker.com\n`
-  );
-  const JWT =
-    process.env.JWT ??
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTkwMzQ5NDYiLCJpYXQiOjE3MDEzNTY5NzEsImV4cCI6MTczMjg5Mjk3MX0.r94tKntDvLpPJT2zzEe7HMUcOAQYQu3zWNuyFFiChD0";
+async function main(args: string[]) {
+  console.log(`zkCloudWorker Socialcap deposits (c) MAZ 2024 www.zkcloudworker.com`);
+  if (!args[0] || !args[1] || !args[2]) {
+    console.log(`Use: \n  yarn start payer_address fee amount`);
+    process.exit(1);
+  }
+  console.log(`Payer: ${args[0]} Fee: ${args[1]} Amount: ${args[2]}`);
+
+  const JWT = process.env.JWT as string;
 
   const api = new zkCloudWorkerClient({
     jwt: JWT,
   });
 
+  const claim = {
+    uid: '012345678'
+  }
+
   const response = await api.execute({
-    developer: "MAZ",
-    repo: "socialcap-deposits",
-    transactions: [JSON.stringify({
-      memo: "Test deposit",
-      payer: "B62qiqEshYFzdAeMWAdfo7ZefJ7cJ6nsv7hUxes13MU5XvFt67WLBoU",
-      fee: 2,
-      amount: 2
-    })],
-    task: "generate-proof",
-    args: "no-args",
-    metadata: `SC deposit`,
     mode: "async",
+    repo: "socialcap-deposits",
+    developer: "MAZ", // keep it simple, no strange chars here ! 
+    task: "create-unsigned-transaction",
+    metadata: `Payment for Claim ${claim.uid}`,
+    args: JSON.stringify({ 
+      chainId: 'devnet' 
+    }),
+    transactions: [JSON.stringify({
+      memo: `Claim ${claim.uid}`.substring(0, 32), // memo field in Txn
+      payer: args[0],
+      fee: args[1],
+      amount: args[2]
+    })],
   });
 
   console.log("API response:", response);
@@ -38,7 +47,7 @@ async function main() {
   console.log("Job result:", result);
 }
 
-main()
+main(process.argv.slice(2))
   .then(() => process.exit(0))
   .catch((error) => {
     console.error(error);
