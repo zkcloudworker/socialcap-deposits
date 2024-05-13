@@ -5,23 +5,21 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@socialcap/payments@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@socialcap/payments@npm:0.1.3"
-  dependencies:
-    dotenv: "npm:^16.4.5"
-    mina-signer: "npm:^3.0.6"
-    o1js: "npm:^1.1.0"
-  checksum: 10c0/df227279c4bf7942c7d3ff10923f3862405625009a6c1c3b89abd50964b883a404cbf5915d226e38b8d5edbb9fba7bb305c909c8e0b83d9d05ae7e7bc867dad6
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:^20.12.10":
   version: 20.12.10
   resolution: "@types/node@npm:20.12.10"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 10c0/2cc3b6ea09894ed1a3cf39f6491ec539281580f4ff83216e7d26ce85c83237fe0543c0ca49e25b2515ccdb6c8814b488d17a64a05f536dcaea94f9d32a60c7d7
+  languageName: node
+  linkType: hard
+
+"ansi-styles@npm:^4.1.0":
+  version: 4.3.0
+  resolution: "ansi-styles@npm:4.3.0"
+  dependencies:
+    color-convert: "npm:^2.0.1"
+  checksum: 10c0/895a23929da416f2bd3de7e9cb4eabd340949328ab85ddd6e484a637d8f6820d485f53933446f5291c3b760cbc488beb8e88573dd0f9c7daf83dccc8fe81b041
   languageName: node
   linkType: hard
 
@@ -43,7 +41,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blakejs@npm:1.2.1, blakejs@npm:^1.2.1":
+"blakejs@npm:1.2.1":
   version: 1.2.1
   resolution: "blakejs@npm:1.2.1"
   checksum: 10c0/c284557ce55b9c70203f59d381f1b85372ef08ee616a90162174d1291a45d3e5e809fdf9edab6e998740012538515152471dc4f1f9dbfa974ba2b9c1f7b9aad7
@@ -54,6 +52,32 @@ __metadata:
   version: 2.4.0
   resolution: "cachedir@npm:2.4.0"
   checksum: 10c0/76bff9009f2c446cd3777a4aede99af634a89670a67012b8041f65e951d3d36cefe8940341ea80c72219ee9913fa1f6146824cd9dfe9874a4bded728af7e6d76
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: "npm:^4.1.0"
+    supports-color: "npm:^7.1.0"
+  checksum: 10c0/4a3fef5cc34975c898ffe77141450f679721df9dde00f6c304353fa9c8b571929123b26a0e4617bde5018977eb655b31970c297b91b63ee83bb82aeb04666880
+  languageName: node
+  linkType: hard
+
+"color-convert@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "color-convert@npm:2.0.1"
+  dependencies:
+    color-name: "npm:~1.1.4"
+  checksum: 10c0/37e1150172f2e311fe1b2df62c6293a342ee7380da7b9cfdba67ea539909afbd74da27033208d01d6d5cfc65ee7868a22e18d7e7648e004425441c0f8a15a7d7
+  languageName: node
+  linkType: hard
+
+"color-name@npm:~1.1.4":
+  version: 1.1.4
+  resolution: "color-name@npm:1.1.4"
+  checksum: 10c0/a1a3f914156960902f46f7f56bc62effc6c94e84b2cae157a526b1c1f74b677a47ec602bf68a61abfa2b42d15b7c5651c6dbe72a43af720bc588dff885b10f95
   languageName: node
   linkType: hard
 
@@ -101,6 +125,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"has-flag@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "has-flag@npm:4.0.0"
+  checksum: 10c0/2e789c61b7888d66993e14e8331449e525ef42aac53c627cc53d1c3334e768bcb6abdc4f5f0de1478a25beec6f0bd62c7549058b7ac53e924040d4f301f02fd1
+  languageName: node
+  linkType: hard
+
 "isomorphic-fetch@npm:^3.0.0":
   version: 3.0.0
   resolution: "isomorphic-fetch@npm:3.0.0"
@@ -131,16 +162,6 @@ __metadata:
   dependencies:
     mime-db: "npm:1.52.0"
   checksum: 10c0/82fb07ec56d8ff1fc999a84f2f217aa46cb6ed1033fefaabd5785b9a974ed225c90dc72fff460259e66b95b73648596dbcc50d51ed69cdf464af2d237d3149b2
-  languageName: node
-  linkType: hard
-
-"mina-signer@npm:^3.0.6":
-  version: 3.0.7
-  resolution: "mina-signer@npm:3.0.7"
-  dependencies:
-    blakejs: "npm:^1.2.1"
-    js-sha256: "npm:^0.9.0"
-  checksum: 10c0/da7c7d5512d6931fdf101a7556cc5a9f0dbc83f022138a333ce9973a742a93517eb7b748735a78cf32e59f264996be90d565f5ba9d79017bda67c8fc0ada0ed3
   languageName: node
   linkType: hard
 
@@ -210,15 +231,23 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "socialcap-deposits@workspace:."
   dependencies:
-    "@socialcap/payments": "npm:^0.1.3"
     "@types/node": "npm:^20.12.10"
     dotenv: "npm:^16.4.5"
     nats: "npm:^2.24.0"
     o1js: "npm:^1.1.0"
     typescript: "npm:^5.4.5"
-    zkcloudworker: "npm:^0.4.7"
+    zkcloudworker: "npm:^0.7.9"
   languageName: unknown
   linkType: soft
+
+"supports-color@npm:^7.1.0":
+  version: 7.2.0
+  resolution: "supports-color@npm:7.2.0"
+  dependencies:
+    has-flag: "npm:^4.0.0"
+  checksum: 10c0/afb4c88521b8b136b5f5f95160c98dee7243dc79d5432db7efc27efb219385bbc7d9427398e43dd6cc730a0f87d5085ce1652af7efbe391327bc0a7d0f7fc124
+  languageName: node
+  linkType: hard
 
 "tr46@npm:~0.0.3":
   version: 0.0.3
@@ -292,13 +321,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zkcloudworker@npm:^0.4.7":
-  version: 0.4.7
-  resolution: "zkcloudworker@npm:0.4.7"
+"zkcloudworker@npm:^0.7.9":
+  version: 0.7.9
+  resolution: "zkcloudworker@npm:0.7.9"
   dependencies:
     axios: "npm:^1.6.8"
+    chalk: "npm:^4.1.2"
+    nats: "npm:^2.24.0"
   peerDependencies:
     o1js: ^1.1.0
-  checksum: 10c0/8c934c7b326b978b832582f74a89959aeb22258ba80e1e45f1d687934e52c8ca2394aa6e3570fec490daebef8eebc5516f186d0d9dbb020b8468b7ec8fca9080
+  checksum: 10c0/e658707f220f774fcf21430a8dd0c44e3ac5656ce80001ce4d74b7f2a3c404c70d377da93cc1875225db76399a375f03c2f07f176334bb37dfa6980a38db1c1c
   languageName: node
   linkType: hard
