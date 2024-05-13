@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { zkCloudWorkerClient } from "zkcloudworker";
+import fs from "fs";
 
 async function main(args: string[]) {
   console.log(`zkCloudWorker Socialcap deposits (c) MAZ 2024 www.zkcloudworker.com`);
@@ -43,8 +44,16 @@ async function main(args: string[]) {
   }
 
   console.log("Waiting for job ...");
-  const result = await api.waitForJobResult({ jobId });
-  console.log("Job result:", result);
+  const jobResult = await api.waitForJobResult({ jobId });
+  //console.log("Job result:", JSON.stringify(jobResult));
+  //console.log("Job result.result:", JSON.stringify(jobResult.result));
+
+  let { result } = jobResult.result;
+  let fname = "./tmp/serialized-txn.json";
+  console.log("Writing txn to: ", fname);
+  console.log("Serialized Txn:", JSON.stringify(result, null, 2));
+
+  fs.writeFileSync(fname, JSON.stringify(JSON.parse(result), null, 2));
 }
 
 main(process.argv.slice(2))

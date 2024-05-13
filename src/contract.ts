@@ -13,7 +13,7 @@
  * It will be the only account used for receiving payments for any 
  * Socialcap services. Its public address is: ``
  */
-import { SmartContract, state, State, method } from "o1js";
+import { SmartContract, state, State, Permissions, method } from "o1js";
 import { UInt64, AccountUpdate, PublicKey } from "o1js";
 
 export class SocialcapDeposits extends SmartContract {
@@ -45,19 +45,19 @@ export class SocialcapDeposits extends SmartContract {
     // proof authorization and consequently can only be updated by transactions 
     // that fulfill the zkApp's smart contract logic. 
     // Ref: https://docs.minaprotocol.com/zkapps/tutorials/account-updates#smart-contracts
-    // this.account.permissions.set({
-    //   ...Permissions.default(),
-    //   editState:  Permissions.proofOrSignature(),
-    //   receive: Permissions.proofOrSignature(),
-    //   send: Permissions.proofOrSignature(),
-    //   setDelegate: Permissions.proofOrSignature(),
-    //   setPermissions: Permissions.proofOrSignature(),
-    //   setZkappUri: Permissions.proofOrSignature(),
-    //   setTokenSymbol: Permissions.proofOrSignature(),
-    //   incrementNonce: Permissions.proofOrSignature(),
-    //   setVotingFor: Permissions.proofOrSignature(),
-    //   setTiming: Permissions.proofOrSignature(),
-    // });
+    this.account.permissions.set({
+      ...Permissions.default(),
+      editState:  Permissions.proofOrSignature(),
+      receive: Permissions.proofOrSignature(),
+      send: Permissions.proofOrSignature(),
+      setDelegate: Permissions.proofOrSignature(),
+      setPermissions: Permissions.proofOrSignature(),
+      setZkappUri: Permissions.proofOrSignature(),
+      setTokenSymbol: Permissions.proofOrSignature(),
+      incrementNonce: Permissions.proofOrSignature(),
+      setVotingFor: Permissions.proofOrSignature(),
+      setTiming: Permissions.proofOrSignature(),
+    });
   }
 
   /**

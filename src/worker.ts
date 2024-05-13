@@ -97,6 +97,6 @@ export class DepositsWorker extends zkCloudWorker {
     console.log(`Unsigned transaction created and proved`);
 
     // return the serialized unsigned transaction
-    return JSON.stringify(unsignedTxn.toJSON(), null, 2);
+    return unsignedTxn.toJSON();
   }
 }
