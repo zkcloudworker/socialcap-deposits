@@ -58,9 +58,9 @@ export class DepositsWorker extends zkCloudWorker {
     console.log(`Args: ${this.cloud.args}`)
     console.log(`Payload: ${transactions[0]}`);
 
-    let { chainId } = JSON.parse(this.cloud.args || '{"chainId": "devnet"}');
-    await initBlockchain(chainId);
-    console.log(`Using chain: ${chainId}`);
+    // let { chainId } = JSON.parse(this.cloud.args || '{"chainId": "devnet"}');
+    // await initBlockchain(chainId);
+    // console.log(`Using chain: ${chainId}`);
     
     let { memo, payer, amount, fee } = getPayload(transactions);
     console.log(`Receiving payment: ${amount} from: ${payer} for fee:${fee}`);

@@ -14,6 +14,7 @@ async function main(args: string[]) {
 
   const api = new zkCloudWorkerClient({
     jwt: JWT,
+    chain: 'devnet'
   });
 
   const claim = {
