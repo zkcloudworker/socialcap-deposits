@@ -1,6 +1,6 @@
 {
   "name": "socialcap-deposits",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "MAZ",
   "scripts": {
     "test": "ts-node src/execute.ts"
@@ -14,6 +14,6 @@
     "dotenv": "^16.4.5",
     "nats": "^2.24.0",
     "o1js": "^1.1.0",
-    "zkcloudworker": "^0.7.9"
+    "zkcloudworker": "^0.8.2"
   }
 }
